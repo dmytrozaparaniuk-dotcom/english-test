@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>English Test</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#f1f3f4;
+}
+
+.container{
+    background:white;
+    width:600px;
+    margin:30px auto;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.15);
+}
+
+h2{margin-top:0;}
+
+.question{
+    margin-bottom:20px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#673ab7;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.progress{
+    width:100%;
+    background:#ddd;
+    height:22px;
+    border-radius:10px;
+}
+
+#bar{
+    width:0%;
+    height:22px;
+    background:#4caf50;
+    border-radius:10px;
+}
+
+.center{text-align:center;}
+</style>
+</head>
+
+<body>
+
+<!-- FORM -->
+<div class="container" id="formBox">
+
+<h2>Test</h2>
+
+<div class="question">
+<label>What is your name?</label><br>
+<input type="text" style="width:100%;padding:8px;">
+</div>
+
+<div class="question">
+<label>How old are you?</label><br>
+<input type="text" style="width:100%;padding:8px;">
+</div>
+
+<div class="question">
+<label>What is your favorite English word?</label><br>
+<input type="text" style="width:100%;padding:8px;">
+</div>
+
+<div class="question">
+<label>Why do you want to learn English?</label><br>
+<input type="radio" name="why"> To travel<br>
+<input type="radio" name="why"> To watch movies<br>
+<input type="radio" name="why"> To make friends<br>
+<input type="radio" name="why"> Because my teacher said so 😍<br>
+<input type="radio" name="why"> Because of my parents<br>
+<input type="radio" name="why"> I just want to know this language
+</div>
+
+<div class="question">
+<label>How many years have you learned English?</label><br>
+<input type="radio" name="years"> 1<br>
+<input type="radio" name="years"> 2<br>
+<input type="radio" name="years"> 3<br>
+<input type="radio" name="years"> 4<br>
+<input type="radio" name="years"> 5+
+</div>
+
+<div class="question">
+<label>How often do you practice English?</label><br>
+<input type="radio" name="practice"> Every day<br>
+<input type="radio" name="practice"> Sometimes<br>
+<input type="radio" name="practice"> Only before lessons 😅
+</div>
+
+<div class="question">
+<label>What do you like most in English lessons?</label><br>
+<input type="radio" name="like"> Speaking<br>
+<input type="radio" name="like"> Games<br>
+<input type="radio" name="like"> Grammar<br>
+<input type="radio" name="like"> Homework (really?) 😅<br>
+<input type="radio" name="like"> Paces<br>
+<input type="radio" name="like"> Talking about our mood by choosing a picture
+</div>
+
+<button onclick="startLoading()">Submit</button>
+
+</div>
+
+
+<!-- LOADING -->
+<div class="container center" id="loading" style="display:none;">
+<h3>AI is analyzing your answers...</h3>
+
+<div class="progress">
+<div id="bar"></div>
+</div>
+
+<p id="status">Starting analysis...</p>
+<p id="percent">0%</p>
+</div>
+
+
+<!-- RESULT -->
+<div class="container center" id="result" style="display:none;">
+<h2>✅ Test Complete</h2>
+<h3>Happy April Fools! 😂</h3>
+
+<img src="https://drive.google.com/uc?export=view&id=1-il_Mw_eDz74Z0W7do-TLlZyMqi_kpxt" width="400">https://i.postimg.cc/L569nkDm/Imm.jpg
+
+
+<script>
+function startLoading(){
+
+document.getElementById("formBox").style.display="none";
+document.getElementById("loading").style.display="block";
+
+let width = 0;
+
+let messages = [
+"Checking vocabulary...",
+"Analyzing grammar...",
+"Scanning pronunciation...",
+"Calculating English level...",
+"Finalizing results..."
+];
+
+let msgIndex = 0;
+
+let interval = setInterval(function(){
+
+if(width >= 100){
+clearInterval(interval);
+document.getElementById("loading").style.display="none";
+document.getElementById("result").style.display="block";
+}
+else{
+width++;
+document.getElementById("bar").style.width = width + "%";
+document.getElementById("percent").innerText = width + "%";
+
+if(width % 20 === 0 && msgIndex < messages.length){
+document.getElementById("status").innerText = messages[msgIndex];
+msgIndex++;
+}
+}
+
+},40);
+}
+</script>
+
+</body>
+</html>
